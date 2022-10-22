@@ -1,0 +1,48 @@
+<template>
+  <div class="app-wrapper">
+    <!-- 左邊 menu -->
+    <sidebar
+      id="guide-sidebar"
+      class="sidebar-container"
+      :style="{ backgroundColor: variables.menuBg }"
+    />
+
+    <!--右邊 內容 -->
+    <div class="main-container">
+      <!-- navbar -->
+      <div class="fixed-header">
+        <navbar />
+      </div>
+
+      <!-- 內容區 -->
+      <app-main />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import Navbar from './components/Navbar'
+import Sidebar from './components/Sidebar'
+import AppMain from './components/AppMain'
+</script>
+
+<style lang="scss" scoped>
+@import '~@/styles/mixin.scss';
+@import '~@/styles/variables.scss';
+
+.app-wrapper {
+  @include clearfix;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  width: calc(100% - #{$sideBarWidth});
+}
+</style>
+
