@@ -2,7 +2,12 @@
   <div class="login-container">
     <!-- element 圖標使用 -->
     <!-- <div><CirclePlus style="width: 30px; color: red"></CirclePlus></div> -->
-    <el-form class="login-form" :model="loginForm" :rules="loginRules" ref="loginFromRef">
+    <el-form
+      class="login-form"
+      :model="loginForm"
+      :rules="loginRules"
+      ref="loginFromRef"
+    >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -11,20 +16,38 @@
         <span class="svg-container">
           <svg-icon icon="user"></svg-icon>
         </span>
-        <el-input placeholder="請輸入用戶名" name="username" type="text" v-model="loginForm.username"/>
+        <el-input
+          placeholder="請輸入用戶名"
+          name="username"
+          type="text"
+          v-model="loginForm.username"
+        />
       </el-form-item>
 
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon="password"></svg-icon>
         </span>
-        <el-input placeholder="請輸入密碼" name="password" :type="passwordType" v-model="loginForm.password"/>
+        <el-input
+          placeholder="請輸入密碼"
+          name="password"
+          :type="passwordType"
+          v-model="loginForm.password"
+        />
         <span class="show-pwd" @click="changePwdType">
-          <svg-icon :icon="passwordType === 'password' ? 'eye' : 'eye-open' "></svg-icon>
+          <svg-icon
+            :icon="passwordType === 'password' ? 'eye' : 'eye-open'"
+          ></svg-icon>
         </span>
       </el-form-item>
 
-      <el-button class="btn" type="primary" :loading="loading" @click="handlerLogin">登录</el-button>
+      <el-button
+        class="btn"
+        type="primary"
+        :loading="loading"
+        @click="handlerLogin"
+        >登录</el-button
+      >
     </el-form>
   </div>
 </template>
@@ -34,21 +57,19 @@
 // import { CirclePlus } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import { validatePassword } from './rules'
 
 const store = useStore()
+const router = useRouter()
 const loginFromRef = ref(null)
 const loginForm = ref({
   username: 'super-admin',
   password: '123456'
 })
 const loginRules = ref({
-  username: [
-    { required: true, message: ' 用戶名必填', trigger: 'blur' }
-  ],
-  password: [
-    { required: true, validator: validatePassword(), trigger: 'blur' }
-  ]
+  username: [{ required: true, message: ' 用戶名必填', trigger: 'blur' }],
+  password: [{ required: true, validator: validatePassword(), trigger: 'blur' }]
 })
 
 // 密碼展現類型
@@ -64,15 +85,17 @@ const changePwdType = () => {
 // 提交登入
 const loading = ref(false)
 const handlerLogin = () => {
-  loginFromRef.value.validate(valid => {
+  loginFromRef.value.validate((valid) => {
     if (!valid) return
     loading.value = true
-    store.dispatch('user/login', loginForm.value)
+    store
+      .dispatch('user/login', loginForm.value)
       .then(() => {
         loading.value = false
         // TODO:登入後處理
+        router.push({ path: '/' })
       })
-      .catch(err => {
+      .catch((err) => {
         loading.value = false
         console.log(err)
       })

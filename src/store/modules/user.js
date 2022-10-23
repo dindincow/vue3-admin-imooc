@@ -1,17 +1,22 @@
 import md5 from 'md5'
-import { login } from '@/api/sys'
-import { setItem, getItem } from '@/utils/storage'
+import router from '@/router'
+import { login, getUserInfo } from '@/api/sys'
+import { setItem, getItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
 
 export default {
   namespaced: true,
   state: () => ({
-    token: getItem(TOKEN) || ''
+    token: getItem(TOKEN) || '',
+    userInfo: {}
   }),
   mutations: {
     setToken(state, token) {
       state.token = token
       setItem(TOKEN, token)
+    },
+    setUserInfo(state, userInfo) {
+      state.userInfo = userInfo
     }
   },
   actions: {
@@ -27,6 +32,18 @@ export default {
             reject(err)
           })
       })
+    },
+    async getUserInfo(context) {
+      const result = await getUserInfo()
+      this.commit('user/setUserInfo', result)
+      return result
+    },
+    async logout(context) {
+      this.commit('user/setToken', '')
+      this.commit('user/setUserInfo', {})
+      removeAllItem()
+      // TODO 權限相關配置
+      router.push('/login')
     }
   }
 }
