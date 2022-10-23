@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-// import Home from '../views/Home.vue'
+import Layout from '@/layout'
 
 /**
  * 公開路由表
@@ -8,6 +8,10 @@ const publicRoutes = [
   {
     path: '/login',
     component: () => import('@/views/login/index')
+  },
+  {
+    path: '/',
+    component: Layout
   }
 ]
 
