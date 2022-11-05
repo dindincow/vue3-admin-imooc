@@ -2,6 +2,7 @@ import md5 from 'md5'
 import router from '@/router'
 import { login, getUserInfo } from '@/api/sys'
 import { setItem, getItem, removeAllItem } from '@/utils/storage'
+import { setTimeStamp } from '@/utils/auth'
 import { TOKEN } from '@/constant'
 
 export default {
@@ -27,6 +28,8 @@ export default {
         login({ username, password: md5(password) })
           .then(data => {
             this.commit('user/setToken', data.token)
+            router.push('/')
+            setTimeStamp()
             resolve(data)
           }).catch(err => {
             reject(err)

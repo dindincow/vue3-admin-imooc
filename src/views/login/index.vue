@@ -57,11 +57,11 @@
 // import { CirclePlus } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
 import { validatePassword } from './rules'
 
 const store = useStore()
-const router = useRouter()
+// const router = useRouter()
 const loginFromRef = ref(null)
 const loginForm = ref({
   username: 'super-admin',
@@ -93,7 +93,7 @@ const handlerLogin = () => {
       .then(() => {
         loading.value = false
         // TODO:登入後處理
-        router.push({ path: '/' })
+        // router.push({ path: '/' })
       })
       .catch((err) => {
         loading.value = false
