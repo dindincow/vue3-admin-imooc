@@ -10,7 +10,7 @@ const service = axios.create({
 
 // 请求攔截器
 service.interceptors.request.use(config => {
-  config.headers.icode = 'D35F8786732E26B0'
+  config.headers.icode = 'FB7BCA32F7D0B9A4'
   if (store.getters.token) {
     config.headers.Authorization = `Bearer ${store.getters.token}`
     // token 過期,則退出登入

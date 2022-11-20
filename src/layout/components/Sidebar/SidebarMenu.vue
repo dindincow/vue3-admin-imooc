@@ -1,25 +1,38 @@
 <template>
   <!-- 一级 menu -->
   <el-menu
-    :uniqueOpened="true"
-    default-active="2"
-    background-color="#545c64"
-    text-color="#fff"
-    active-text-color="#ffd04b"
+    :collapse="!$store.getters.sidebarOpened"
+    :default-active="activeMenu"
+    :background-color="$store.getters.cssVar.menuBg"
+    :text-color="$store.getters.cssVar.menuText"
+    :active-text-color="$store.getters.cssVar.menuActiveText"
+    :unique-opened="true"
+    router
   >
-    <!-- 子集 menu -->
-    <el-submenu index="1">
-      <template #title>
-        <i class="el-icon-location"></i>
-        <span>导航一</span>
-      </template>
-      <el-menu-item index="1-1">选项1</el-menu-item>
-      <el-menu-item index="1-2">选项2</el-menu-item>
-    </el-submenu>
-    <!-- 具体菜单项 -->
-    <el-menu-item index="4">
-      <i class="el-icon-setting"></i>
-      <template #title>导航四</template>
-    </el-menu-item>
+    <SidebarItem v-for="item in routes" :key="item.path" :route="item" />
   </el-menu>
 </template>
+<script setup>
+import { computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { filterRouters, generateMenus } from '@/utils/routes'
+
+import SidebarItem from './SidebarItem.vue'
+
+const router = useRouter()
+console.log('路由攤平=======>', router.getRoutes())
+const routes = computed(() => {
+  // 獲取不重複路由
+  const fRoutes = filterRouters(router.getRoutes())
+  // 產生左邊選單
+  return generateMenus(fRoutes)
+})
+console.log('最後路遊結果============>', JSON.stringify(routes.value))
+
+// 默認菜單高亮
+const route = useRoute()
+const activeMenu = computed(() => {
+  const { path } = route
+  return path
+})
+</script>
