@@ -13,9 +13,12 @@ import installIcons from './icons/index'
 // 導入權限
 import './permission'
 
+// 導入i18N
+import i18n from '@/i18n'
+
 const app = createApp(App)
 
 installElementPlus(app)
 installIcons(app)
 
-app.use(store).use(router).mount('#app')
+app.use(i18n).use(store).use(router).mount('#app')

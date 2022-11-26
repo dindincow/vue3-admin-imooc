@@ -2,7 +2,11 @@
   <div class="navbar">
     <!-- 漢堡按鈕 -->
     <Hamburger class="hamburger-container"></Hamburger>
+    <!-- 麵包削 -->
+    <Breadcrumb></Breadcrumb>
     <div class="right-menu">
+      <!-- 語言切換 -->
+      <LangSelect class="right-menu-item hover-effect" />
       <!-- 頭像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -34,6 +38,8 @@
 <script setup>
 import { useStore } from 'vuex'
 import Hamburger from '@/components/Hamburger'
+import Breadcrumb from '@/components/Breadcrumb'
+import LangSelect from '@/components/LangSelect'
 
 const store = useStore()
 const logout = () => {
@@ -77,6 +83,17 @@ const logout = () => {
           --el-avatar-background-color: none;
           margin-right: 12px;
         }
+      }
+    }
+    ::v-deep .right-menu-item {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-effect {
+        cursor: pointer;
       }
     }
   }
