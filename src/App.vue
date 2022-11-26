@@ -1,12 +1,13 @@
 <template>
-  <router-view></router-view>
+asdas
+  <el-config-provider :locale="$store.getters.language ==='en' ? en : zhCn">
+    <router-view></router-view>
+  </el-config-provider>
 </template>
 
-<script>
-export default {
-  name: 'App',
-  components: {}
-}
+<script setup>
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import en from 'element-plus/lib/locale/lang/en'
 </script>
 
 <style>

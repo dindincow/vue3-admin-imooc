@@ -9,7 +9,8 @@
       ref="loginFromRef"
     >
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
+        <LangSelect class="langSelect" />
       </div>
 
       <el-form-item prop="username">
@@ -35,9 +36,7 @@
           v-model="loginForm.password"
         />
         <span class="show-pwd" @click="changePwdType">
-          <svg-icon
-            :icon="passwordType === 'password' ? 'eye' : 'eye-open'"
-          ></svg-icon>
+          <svg-icon :icon="passwordType === 'password' ? 'eye' : 'eye-open'"></svg-icon>
         </span>
       </el-form-item>
 
@@ -46,8 +45,9 @@
         type="primary"
         :loading="loading"
         @click="handlerLogin"
-        >登录</el-button
+        >{{ $t('msg.login.loginBtn') }}</el-button
       >
+      <div class="tip" v-html="$t('msg.login.desc')"></div>
     </el-form>
   </div>
 </template>
@@ -57,18 +57,19 @@
 // import { CirclePlus } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import { useStore } from 'vuex'
-// import { useRouter } from 'vue-router'
 import { validatePassword } from './rules'
+import LangSelect from '@/components/LangSelect'
+import { useI18n } from 'vue-i18n'
 
+const i18n = useI18n()
 const store = useStore()
-// const router = useRouter()
 const loginFromRef = ref(null)
 const loginForm = ref({
   username: 'super-admin',
   password: '123456'
 })
 const loginRules = ref({
-  username: [{ required: true, message: ' 用戶名必填', trigger: 'blur' }],
+  username: [{ required: true, message: i18n.t('msg.login.usernameRule'), trigger: 'blur' }],
   password: [{ required: true, validator: validatePassword(), trigger: 'blur' }]
 })
 
@@ -146,6 +147,11 @@ $cursor: #fff;
         caret-color: $cursor;
       }
     }
+    .tip{
+      font-size: 14px;
+      color: #fff;
+      line-height: 21px;
+    }
   }
 
   .svg-container {
@@ -157,6 +163,15 @@ $cursor: #fff;
 
   .title-container {
     position: relative;
+    display: flex;
+    align-items: baseline;
+
+    .langSelect{
+      font-size: 25px;
+      background: #fff;
+      padding: 3px;
+      border-radius: 5px;
+    }
 
     .title {
       font-size: 26px;

@@ -1,6 +1,6 @@
 <template>
   <!-- menu 菜單 -->
-  <el-submenu v-if="route.children.length > 0" :index="route.path">
+  <el-sub-menu v-if="route.children.length > 0" :index="route.path">
     <template #title>
       <menu-item :title="route.meta.title" :icon="route.meta.icon"></menu-item>
     </template>
@@ -11,7 +11,7 @@
       :key="item.path"
       :route="item"
     >asd</sidebar-item>
-  </el-submenu>
+  </el-sub-menu>
 
   <!-- 渲染 item 项 -->
   <el-menu-item v-else :index="route.path">
