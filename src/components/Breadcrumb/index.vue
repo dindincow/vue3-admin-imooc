@@ -7,11 +7,11 @@
       >
         <!-- 不可點級项 -->
         <span v-if="index === breadcrumbData.length - 1" class="no-redirect">{{
-          item.meta.title
+          generateTitle(item.meta.title)
         }}</span>
         <!-- 可點級项 -->
         <a v-else class="redirect" @click.prevent="onLinkClick(item)">{{
-          item.meta.title
+          generateTitle(item.meta.title)
         }}</a>
       </el-breadcrumb-item>
     </transition-group>
@@ -22,7 +22,7 @@
 import { ref, watch } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
-
+import { generateTitle } from '@/utils/i18n'
 const route = useRoute()
 // 生成数组数据
 const breadcrumbData = ref([])

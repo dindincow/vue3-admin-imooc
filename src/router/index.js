@@ -120,7 +120,7 @@ const publicRoutes = [
         path: '/profile',
         component: () => import('@/views/profile/index'),
         meta: {
-          title: '个人中心',
+          title: 'profile',
           icon: 'el-icon-user'
         }
       },
