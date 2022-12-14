@@ -8,6 +8,14 @@
 <script setup>
 import zh from 'element-plus/lib/locale/lang/zh-cn'
 import en from 'element-plus/lib/locale/lang/en'
+import { useStore } from 'vuex'
+import { generateNewStyle, writeNewStyle } from '@/utils/theme'
+
+const store = useStore()
+generateNewStyle(store.getters.mainColor).then(newStyleText => {
+  writeNewStyle(newStyleText)
+})
+
 </script>
 
 <style></style>

@@ -5,6 +5,10 @@
     <!-- 麵包削 -->
     <Breadcrumb></Breadcrumb>
     <div class="right-menu">
+      <!-- 切換全銀幕-->
+      <Screenfull class="right-menu-item hover-effect"/>
+      <!-- 換主題 -->
+      <ThemeSelect class="right-menu-item hover-effect" />
       <!-- 語言切換 -->
       <LangSelect class="right-menu-item hover-effect" />
       <!-- 頭像 -->
@@ -40,6 +44,8 @@ import { useStore } from 'vuex'
 import Hamburger from '@/components/Hamburger'
 import Breadcrumb from '@/components/Breadcrumb'
 import LangSelect from '@/components/LangSelect'
+import ThemeSelect from '@/components/ThemeSelect'
+import Screenfull from '@/components/Screenfull'
 
 const store = useStore()
 const logout = () => {

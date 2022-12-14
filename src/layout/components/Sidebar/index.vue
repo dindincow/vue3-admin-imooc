@@ -36,4 +36,7 @@ import {} from 'vue'
     white-space: nowrap;
   }
 }
+.el-avatar {
+  --el-avatar-background-color: none;
+}
 </style>
