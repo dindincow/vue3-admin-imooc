@@ -3,6 +3,7 @@
     <svg-icon
       class-name="search-icon"
       icon="search"
+      id="guide-search"
     />
     <el-select
       ref="headerSearchSelectRef"

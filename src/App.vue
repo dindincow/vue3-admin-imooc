@@ -1,5 +1,4 @@
 <template>
-  asdas-{{ $store.getters.language }}
   <el-config-provider :locale="$store.getters.language === 'en' ? en : zh">
     <router-view></router-view>
   </el-config-provider>

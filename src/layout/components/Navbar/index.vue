@@ -1,10 +1,12 @@
 <template>
   <div class="navbar">
     <!-- 漢堡按鈕 -->
-    <Hamburger class="hamburger-container"></Hamburger>
+    <Hamburger class="hamburger-container" id="guide-breadcrumb"></Hamburger>
     <!-- 麵包削 -->
     <Breadcrumb></Breadcrumb>
     <div class="right-menu">
+      <!-- 引導 -->
+      <Guid class="right-menu-item hover-effect"/>
       <!-- 搜索-->
       <HeaderSearch class="right-menu-item hover-effect"/>
       <!-- 切換全銀幕-->
@@ -49,6 +51,7 @@ import LangSelect from '@/components/LangSelect'
 import ThemeSelect from '@/components/ThemeSelect'
 import Screenfull from '@/components/Screenfull'
 import HeaderSearch from '@/components/HeaderSearch'
+import Guid from '@/components/Guid'
 
 const store = useStore()
 const logout = () => {

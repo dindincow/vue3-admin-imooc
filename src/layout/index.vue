@@ -12,6 +12,7 @@
       <!-- navbar -->
       <div class="fixed-header">
         <navbar />
+        <TagsView></TagsView>
       </div>
 
       <!-- 內容區 -->
@@ -24,6 +25,7 @@
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import AppMain from './components/AppMain'
+import TagsView from '@/components/TagsView'
 
 </script>
 
